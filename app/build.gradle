@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.ceabie.dexnkife'
 
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -12,17 +13,63 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-
         multiDexEnabled true
     }
+
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    rootProject.ext.rmFile('ddd')
+}
 
-    println "hello groovy"
+
+afterEvaluate {
+    //println "dddd"
+}
+
+def testString(String input) {
+    println "testString $input"
+}
+
+task showDescription3 << {
+    println description
+}
+
+showDescription3 {
+    description = 'this is task showDescription'
+}
+
+task ('gradleStudy') {
+
+
+
+    println project.class
+    doFirst {
+        println 'Hello First!'
+    }
+
+    doLast {
+        println 'Hello Last!'+project
+
+//        +':'+gradle.gradleUserHomeDir
+//        +':'+gradle.gradleVersion
+
+    }
+
+    testString 'Hello gradle'
+}
+
+tasks.getByName('gradleStudy') {
+    it.doLast {
+        println 'gradleStudy!'+project
+
+    }
+    println 'getByName gradle'
 
 }
 
@@ -35,5 +82,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:multidex:1.0.1'
     testCompile 'junit:junit:4.12'
+
+    println 'Hello dependencies'
 
 }

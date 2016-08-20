@@ -1,1 +1,8 @@
 include ':app'
+def initGradleEnvironment(){
+//    println"initialize  Gradle Environment ....."
+//    println settings
+//    println"initialize  Gradle Environment completes..."
+}
+//settings.gradle加载的时候，会执行initGradleEnvironment
+initGradleEnvironment()
